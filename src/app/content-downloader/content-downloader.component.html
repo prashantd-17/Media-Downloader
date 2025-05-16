@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Video Downloader Tool</h1>
+
+  <input [(ngModel)]="videoUrl" name="videoUrl" placeholder="Paste video URL here..." required>
+
+  <select [(ngModel)]="platform" name="platform">
+    <option value="youtube">YouTube</option>
+    <option value="instagram">Instagram</option>
+    <!-- More platforms -->
+  </select>
+
+  <button (click)="getVideoInfo()">Fetch Info</button>
+
+  <div *ngIf="videoInfo">
+    <h2>{{ videoInfo.title }}</h2>
+    <img [src]="videoInfo.thumbnail" width="200" />
+
+    <ul>
+      <li *ngFor="let format of videoInfo.formats">
+        {{ format.format_note || format.quality }} - 
+        <button (click)="downloadVideo(format.url)">Download</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <form (ngSubmit)="platform === 'instagram' ? getInstagramVideo() : fetchVideoInfo()">
+  <input [(ngModel)]="videoUrl" name="videoUrl" placeholder="Paste video URL here..." required>
+
+  <select [(ngModel)]="platform" name="platform">
+    <option value="youtube">YouTube</option>
+    <option value="instagram">Instagram</option> -->
+    <!-- You can add TikTok, Facebook, etc., later -->
+  <!-- </select>
+
+  <button type="submit">Fetch Info</button>
+</form> -->
+
+
